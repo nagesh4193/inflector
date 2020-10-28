@@ -1,8 +1,12 @@
 language: Go
+arch:
+    - amd64
+    - ppc64le
 go:
     - 1.5.4
     - 1.6.3
     - 1.7
+    - 1.15
     - tip
 matrix:
     include:
@@ -12,6 +16,8 @@ matrix:
               - go test -v -race ./...
     allow_failures:
         - go: tip
+        - arch: ppc64le
+          go: tip
     fast_finish: true
 install:
     - # Do nothing. This is needed to prevent default install action "go get -t -v ./..." from happening here (we want it to happen inside script step).
